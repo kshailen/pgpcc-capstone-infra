@@ -71,3 +71,12 @@ public_subnets = [
 ]
 
 ```
+
+### What all things are getting created.
+1. VPC
+2. 3 private and 2 public subnets
+3. One Apache server in private subnet
+4. one bastion host in private subnet
+5. one internetgateway , two NAT gateways
+6. Routing tables , public and private routes , routing table associations
+7. One Loadbalancer
