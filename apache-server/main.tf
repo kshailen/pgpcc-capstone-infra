@@ -39,12 +39,13 @@ data "aws_ami" "ubuntu" {
 
 
 resource "aws_instance" "apache-server" {
+  count = var.apache_server_count
   ami                         =  data.aws_ami.centos7_ami.id
   key_name                    =  var.aws_key_name
   instance_type               = "t2.micro"
   security_groups             = [aws_security_group.apache-server-sg.id]
-  availability_zone = data.aws_availability_zones.available.names[0]
-  subnet_id = var.subnet_id_for_apache_server
+  availability_zone = element(data.aws_availability_zones.available.names, count.index)
+  subnet_id = element(var.subnet_id_for_apache_server, count.index)
   tags = {
     Name = "apache-pgpcc-capston-infra-${var.aws_region}"
     Region = var.aws_region

@@ -23,8 +23,9 @@ resource "aws_lb_target_group" "alb_tg" {
 
 # Attach the Apache EC2 instance to the target group
 resource "aws_lb_target_group_attachment" "tg_attach" {
+  count = var.apache_server_count
   target_group_arn  = aws_lb_target_group.alb_tg.arn
-  target_id         = var.apache_instance_id
+  target_id         = element(var.apache_instance_ids , count.index)
   port              = var.http_port
 }
 

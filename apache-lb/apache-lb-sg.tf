@@ -21,12 +21,12 @@ resource "aws_security_group_rule" "allow_lb_https_inbound" {
   security_group_id = aws_security_group.lb_security_group.id
 }
 
-resource "aws_security_group_rule" "allow_lb_https_inbound_jenkins" {
+resource "aws_security_group_rule" "allow_lb_https_inbound_apache" {
   type        = "ingress"
   from_port   = var.lb-port
   to_port     = var.lb-port
   protocol    = "tcp"
-  cidr_blocks = ["${var.apach_server_ip}/32"]
+  cidr_blocks = var.private_subnet_cidrs
   security_group_id = aws_security_group.lb_security_group.id
 }
 

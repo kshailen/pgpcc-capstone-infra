@@ -34,6 +34,9 @@ variable "profile" {
   default = "lab-user"
 }
 
+variable "apache_server_count" {
+  default = 3
+}
 variable "aws_region" {
   default = "us-east-1"
 }

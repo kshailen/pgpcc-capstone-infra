@@ -3,7 +3,7 @@ output "bastion_ip_us" {
 }
 
 output "Apache_server_ip" {
-  value = module.apache-server.Apache_server_ip
+  value = module.apache-server.Apache_server_ips
 }
 
 output "public_subnets" {
